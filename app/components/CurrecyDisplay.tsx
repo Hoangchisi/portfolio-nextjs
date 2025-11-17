@@ -10,7 +10,7 @@ const UPDATE_INTERVAL = 15 * 60 * 1000; // 15 phút
 const headers = new Headers();
 headers.append("apikey", API_KEY);
 
-const requestOptions = {
+const requestOptions : RequestInit = {
   method: 'GET',
   redirect: 'follow',
   headers: headers
@@ -18,10 +18,10 @@ const requestOptions = {
 
 
 function CurrencyDisplay() {
-  const [rate, setRate] = useState(null);
-  const [lastUpdated, setLastUpdated] = useState(null);
+  const [rate, setRate] = useState<number | null>(null);
+  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchExchangeRate = useCallback(async () => {
     console.log("Đang cập nhật tỉ giá...");

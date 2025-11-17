@@ -6,8 +6,23 @@ const CITY = 'Ho Chi Minh City';
 const REFRESH_INTERVAL = 15 * 60 * 1000; // 15 phút
 const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${CITY}&appid=${api_key}&units=metric&lang=vi`;
 
+interface WeatherData {
+  name: string;
+  main: {
+    temp: number;
+    humidity: number;
+  };
+  weather: {
+    icon: string;
+    description: string;
+  }[];
+  wind: {
+    speed: number;
+  };
+}
+
 function WeatherWidget() {
-  const [weatherData, setWeatherData] = useState(null); // data
+  const [weatherData, setWeatherData] = useState<WeatherData | null>(null); // data
   const [loading, setLoading] = useState(true); // load state
   const [error, setError] = useState(null);     // error state
 
@@ -28,7 +43,7 @@ function WeatherWidget() {
       
       setWeatherData(data);
 
-    } catch (err) {
+    } catch (err : any) {
       console.error('Không thể lấy dữ liệu thời tiết:', err);
       setError(err.message);
     } finally {

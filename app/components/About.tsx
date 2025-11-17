@@ -2,7 +2,7 @@
 import  { useState } from 'react';
 function About() {
   const [activeTab, setActiveTab] = useState('skills');
-  const handleTabClick = (tabname) => {
+  const handleTabClick = (tabname:string) => {
     setActiveTab(tabname);}
   return (
     <>
